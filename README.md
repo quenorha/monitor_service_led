@@ -1,7 +1,7 @@
 # monitor_container_led
 
 <div style="text-align: center">
-<img src="images/schema.png"
+<img src="schema.png"
      alt="schema"/>
 </div>
 
