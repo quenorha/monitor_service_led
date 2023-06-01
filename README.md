@@ -16,7 +16,7 @@ Download and place the script monitor_container_led i.e. folder /etc/config-tool
 
 Give it execution permission :
 ```shell
-chmod 750 /etc/config-tools/monitor_container_led
+chmod 750 /etc/config-tools/monitor_service_led
 ```
 
 
