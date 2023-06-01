@@ -57,8 +57,9 @@ Copy/Paste the following (adapt to your script location, container/service name 
 ```shell
 * * * * *  /etc/config-tools/monitor_service_led -s mosquitto -l U1 -d
 ```
+
 This will check the container state every minute. 
-You can add several lines if you have several containers to monitor
+You can add several lines if you have several containers/services to monitor, just use different LED of course.
 
 ### Go further
 We could add a deeper check of the container based on logs or based on status (when provided by the application, i.e Node-RED).
