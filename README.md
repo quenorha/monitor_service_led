@@ -1,4 +1,4 @@
-# monitor_container_led
+# monitor_service_led
 
 <div style="text-align: center">
 <img src="schema.png"
@@ -6,10 +6,10 @@
 </div>
 
 
-Simple script to display container status on WAGO Controller user LEDs.
-- GREEN : Container running
-- ORANGE : Container stopped
-- RED : Container does not exist
+Simple script to display service or Docker container status on WAGO Controller user LEDs.
+- GREEN : Container or service running
+- ORANGE : Container or service stopped 
+- RED : Container does not exist or Docker not installed/started (not used for service)
 
 ### Installation
 Download and place the script monitor_container_led i.e. folder /etc/config-tools.
@@ -23,12 +23,24 @@ chmod 750 /etc/config-tools/monitor_container_led
 ### Usage
 
 ```shell
-/etc/config-tools/monitor_container_led CONTAINER_NAME LEDID
+./monitor_service_led -s [SERVICE or CONTAINER NAME] -l [LED ID] (-d)
 ```
 
-Example : 
+-h : display this help
+-s : service name or container name if -d option is used
+-l : Led ID where service status should be displayed. Acceptable values : U1 - U7 depending on the platform
+-d : argument to provide if the service to monitor is a Docker container
+
+Example 1 : monitor lighttpd web server status : 
+
+
 ```shell
-/etc/config-tools/monitor_container_led mbusd U1
+./monitor_service_led -s lighttpd -l U1
+```
+Example 2 : monitor mosquitto container status : 
+
+```shell
+./monitor_service_led -s mosquitto -l U1 -d
 ```
 
 Make sure LED isn't used by CODESYS and is available on the PFC variant. 
@@ -41,9 +53,9 @@ To open crontab with nano (easier than vim ?)
 ```shell
 export VISUAL=nano; crontab -e
 ```
-Copy/Paste the following (adapt to your container name and LED) :
+Copy/Paste the following (adapt to your script location, container/service name and LED) :
 ```shell
-* * * * *  /etc/config-tools/monitor_container_led mbusd U1
+* * * * *  /etc/config-tools/monitor_service_led -s mosquitto -l U1 -d
 ```
 This will check the container state every minute. 
 You can add several lines if you have several containers to monitor
